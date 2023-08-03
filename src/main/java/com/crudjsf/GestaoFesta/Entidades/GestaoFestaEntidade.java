@@ -37,5 +37,42 @@ public class GestaoFestaEntidade implements Serializable {
 	
 	public GestaoFestaEntidade() {
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public int getQtdAcompanhante() {
+		return qtdAcompanhante;
+	}
+
+	public void setQtdAcompanhante(int qtdAcompanhante) {
+		this.qtdAcompanhante = qtdAcompanhante;
+	}
+
+	public String getNomeAcompanhante() {
+		return nomeAcompanhante;
+	}
+
+	public void setNomeAcompanhante(String nomeAcompanhante) {
+		this.nomeAcompanhante = nomeAcompanhante;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 	
 }
