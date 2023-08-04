@@ -19,5 +19,14 @@ public class GestaoFestaService {
 		List<GestaoFestaEntidade> result = convidadoRepositorio.findAll();
 		return result.stream().map( y -> new GestaoFestaDTO(y)).toList();
 	}
+
+
+	@org.springframework.transaction.annotation.Transactional(readOnly = true)
+	public GestaoFestaDTO findId(Long id){
+		GestaoFestaEntidade result = convidadoRepositorio.findById(id).get();
+		GestaoFestaDTO dto = new GestaoFestaDTO(result);
+		return dto;
+
+	}
 	
 }
