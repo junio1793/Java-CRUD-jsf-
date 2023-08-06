@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Conectar com API</title>
+</head>
+<body>
+
+<h1>Conectar com API</h1>
+
+<button id="buscarDados">Buscar Dados da API</button>
+<div id="resultado"></div>
+
+<script>
+document.getElementById("buscarDados").addEventListener("click", function() {
+    const url = "http://localhost:8080/gestaoFesta";
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+            const resultadoDiv = document.getElementById("resultado");
+            resultadoDiv.innerHTML = "Erro ao buscar dados da API: " + error.message;
+        });
+});
+</script>
+
+</body>
+</html>

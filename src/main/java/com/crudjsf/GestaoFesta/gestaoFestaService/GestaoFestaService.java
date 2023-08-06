@@ -2,6 +2,7 @@ package com.crudjsf.GestaoFesta.gestaoFestaService;
 
 import java.util.List;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.crudjsf.GestaoFesta.Entidades.GestaoFestaEntidade;
@@ -28,5 +29,26 @@ public class GestaoFestaService {
 		return dto;
 
 	}
-	
+
+	@org.springframework.transaction.annotation.Transactional(readOnly = true)
+	public GestaoFestaEntidade save(GestaoFestaDTO gestaoFestaDTO){
+		GestaoFestaEntidade result = new GestaoFestaEntidade();
+		result.setId(gestaoFestaDTO.getId());
+		result.setNome(gestaoFestaDTO.getNome());
+		result.setNomeAcompanhante(gestaoFestaDTO.getNomeAcompanhante());
+		result.setQtdAcompanhante(gestaoFestaDTO.getQtdAcompanhante());
+		return convidadoRepositorio.save(result);
+	}
+
+	@org.springframework.transaction.annotation.Transactional(readOnly = true)
+	public GestaoFestaEntidade atualizarConvidado(Long id,GestaoFestaDTO gestaoFestaDTO ){
+		GestaoFestaEntidade jaExisteConvidado = convidadoRepositorio.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Convidado não encontrado"));
+				jaExisteConvidado.setNome(gestaoFestaDTO.getNome());
+				jaExisteConvidado.setNomeAcompanhante(gestaoFestaDTO.getNomeAcompanhante());
+				jaExisteConvidado.setId(gestaoFestaDTO.getId());
+				jaExisteConvidado.setQtdAcompanhante(gestaoFestaDTO.getQtdAcompanhante());
+				return convidadoRepositorio.save(jaExisteConvidado);
+	}
+
 }
